@@ -10,6 +10,5 @@ for i in range(100,300):
                 re += str(i)+','
 
 
-
 print(re[:-1])
 
