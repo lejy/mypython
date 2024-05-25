@@ -16,26 +16,29 @@ for i in range(0,total):
     K,N,M = map(int,input().split())
     pikaStop = list(map(int,input().split()))
     stop = []
-    remain = N + 1
-    fuel = K
+    position = 0
+    chargeCount = 0
+
     for k in range(0,N+1):
         stop.append(0)
     for a in range(0,len(pikaStop)):
         stop[pikaStop[a]] = 1
-    print(stop)
-    for j in range(0,N+1):
-        remain -= 1
-        if remain == fuel:
+
+    while position < N:
+        if position + K >= N:
             break
-        if (stop[j] == 0):
-            fuel = K
-            chargeCount += 1
-        else:
-            fuel -= 1
-            print(fuel)
-            if fuel < 0:
-                chargeCount = 0
-                break
+        maxp = position + K
+        nextp = -1
+        for j in range(position + 1, maxp + 1):
+            if stop[j] == 1:
+                nextp = j
+        if nextp == -1:
+            chargeCount = 0
+            break
+        position = nextp
+        chargeCount += 1
+
+
 
 
     print(f"#{i+1} {chargeCount}")
